@@ -2,23 +2,20 @@ var dots = document.getElementById('dots');
 var undo = document.getElementById('undo');
 var redo = document.getElementById('redo');
 
-var myHistory = [];
+// List of operations (JS list) done so far
+var myHistory = [Immutable.List([])];
+// Head
 var historyIndex = 0;
 
-// here are our two operations: addDot is what
-// you trigger by clicking the blank
-function addDot(x, y) {
-    // operation(function (data) {
-    //     return data.push(Immutable.Map({
-    //         x: x,
-    //         y: y,
-    //         id: +new Date()
-    //     }));
-    // });
-    console.log(x, y);
+// takes function (fn) and pushes it to myHistory
+function operation(fn) {
+    myHistory = myHistory.slice(0, historyIndex + 1);
+    // myHistory = remove all operations after head
+    var newVersion = fn(myHistory[historyIndex]);
+    // newVersion = function applied to head
+    myHistory.push(newVersion);
+    historyIndex++;
+    // push newVersion to history and update head
+    draw();
+    // redraw dots
 }
-
-// clicking the background adds a dot
-dots.addEventListener('click', function (e) {
-    addDot(e.pageX, e.pageY);
-});

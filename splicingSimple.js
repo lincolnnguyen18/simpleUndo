@@ -28,21 +28,56 @@ mostRecentTransaction = 3
 //     printArray(transactions)
 // }
 
-// /**
-//  * print array
-//  * @param {array} array
-//  */
-// function printArray(array) {
-//     array.forEach(element => process.stdout.write(element.toString() + " "));
-//     process.stdout.write('\n')
-// }
+/**
+ * print array
+ * @param {array} array
+ */
+function printArray(array) {
+    array.forEach(element => process.stdout.write(element.toString() + " "));
+    process.stdout.write('\n');
+}
+
+function print(something) {
+    console.log(something);
+}
+
+function printNewLine() {
+    console.log('\n');
+}
 
 // remove [0, 2 - 1]
-transactions.splice(0, 2)
-console.log(transactions)
-// remove [3, end]
-transactions.splice(3)
-console.log(transactions)
-// push at end?
-transactions.push(999)
-console.log(transactions)
+// remove 2 elements at index 0
+printArray(transactions);
+transactions = transactions.splice(0, 4);
+printArray(transactions);
+printNewLine();
+// // remove [3, end]
+// transactions.splice(3);
+// console.log(transactions);
+// // push at end?
+// transactions.push(999);
+// console.log(transactions);
+
+const Immutable = require('immutable');
+
+var myHistory = Immutable.List([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+var historyIndex = 5;
+
+printArray(myHistory.toJS());
+myHistory = myHistory.slice(0, historyIndex + 1);
+printArray(myHistory.toJS());
+
+printNewLine();
+
+var myHistory2 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+var historyIndex2 = 5;
+printArray(myHistory2);
+myHistory2 = myHistory2.slice(0, historyIndex2 + 1);
+printArray(myHistory2);
+
+printNewLine();
+
+var myHistory3 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+printArray(myHistory3);
+myHistory3 = myHistory3.slice(0, 4);
+printArray(myHistory3);
