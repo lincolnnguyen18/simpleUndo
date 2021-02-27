@@ -67,6 +67,9 @@ printArray(myHistory.toJS());
 myHistory = myHistory.slice(0, historyIndex + 1);
 printArray(myHistory.toJS());
 
+print(myHistory.get(3));
+
+
 printNewLine();
 
 var myHistory2 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
