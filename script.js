@@ -24,11 +24,11 @@ function operation(fn) {
 // pushes dictionary/map of coordinates and id as dot on history stack
 function addDot(x, y) {
     operation(function (data) {
-        return data.push(Immutable.Map({
+        return data.push({
             x: x,
             y: y,
             id: +new Date()
-        }));
+        });
     });
 }
 
@@ -36,20 +36,13 @@ function draw() {
     dots.innerHTML = '';
     // clear dots in view
     myHistory[historyIndex].forEach(function (dot) {
-    // for each dot in history stack, perform following on each dot
+    // for each dot in history stack, perform the following on each dot
         var elem = dots.appendChild(document.createElement('div'));
         // append dot div in dots div
         elem.className = 'dot';
-        elem.style.left = dot.get('x') + 'px';
-        elem.style.top = dot.get('y') + 'px';
+        elem.style.left = dot['x'] + 'px';
+        elem.style.top = dot['y']+ 'px';
         // create dot
-
-        // elem.addEventListener('click', function (e) {
-        //     removeDot(dot.get('id'));
-        //     e.stopPropagation();
-        // });
-        // clicking on a dot removes it
-        
     });
     undo.disabled = (historyIndex != 0) ? '' : 'disabled';
     // if no dots then disable undo
